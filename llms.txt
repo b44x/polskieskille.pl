@@ -1,0 +1,19 @@
+# Polskie Skille
+
+> Open-source registry of skills for AI agents that give access to Polish services, official APIs and public data (VAT White List, KRS, NBP, IMGW-PIB, NFZ, Sejm RP, InPost, Filmweb). Every skill is a SKILL.md instruction file plus a Python 3.8+ standard-library CLI that prints JSON to stdout.
+
+## Start here
+
+- [AGENTS.md](https://raw.githubusercontent.com/b44x/ai-polish-skills/main/AGENTS.md): discovery protocol, capability routing map and execution contract (exit codes 0/2/64/69)
+- [registry.json](https://raw.githubusercontent.com/b44x/ai-polish-skills/main/registry/registry.json): full machine-readable index of skills, install commands and SKILL.md URLs
+- [registry.min.json](https://raw.githubusercontent.com/b44x/ai-polish-skills/main/registry/registry.min.json): minified index
+
+## Install
+
+- One skill: `curl -fsSL https://raw.githubusercontent.com/b44x/ai-polish-skills/main/install.sh | bash -s <skill>`
+- Skill instructions: `https://raw.githubusercontent.com/b44x/ai-polish-skills/main/skills/<skill>/SKILL.md`
+
+## Optional
+
+- [Repository](https://github.com/b44x/ai-polish-skills)
+- [Contributing](https://github.com/b44x/ai-polish-skills/blob/main/CONTRIBUTING.md)
