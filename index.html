@@ -291,11 +291,39 @@
   });
   q.addEventListener("input", render);
 
+  // Clipboard API needs HTTPS/localhost; fall back to execCommand for file:// and plain http.
+  function legacyCopy(text) {
+    var ta = document.createElement("textarea");
+    ta.value = text; ta.setAttribute("readonly", ""); ta.style.position = "fixed"; ta.style.top = "-1000px";
+    document.body.appendChild(ta); ta.select(); ta.setSelectionRange(0, text.length);
+    var ok = false; try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+    document.body.removeChild(ta); return ok;
+  }
+  function copyText(text) {
+    if (navigator.clipboard && window.isSecureContext) {
+      return navigator.clipboard.writeText(text).then(function () { return true; }, function () { return legacyCopy(text); });
+    }
+    return Promise.resolve(legacyCopy(text));
+  }
+  function flash(b, ok) {
+    if (!b.dataset.label) b.dataset.label = b.textContent;
+    b.textContent = ok ? "Skopiowano ✓" : "Zaznacz i Ctrl+C";
+    b.classList.toggle("done", ok);
+    clearTimeout(b._t); b._t = setTimeout(function () { b.textContent = b.dataset.label; b.classList.remove("done"); }, 1800);
+  }
+  function selectAll(el) { var r = document.createRange(); r.selectNodeContents(el); var s = window.getSelection(); s.removeAllRanges(); s.addRange(r); }
+
   document.addEventListener("click", function (e) {
-    var b = e.target.closest(".copy"); if (!b) return;
-    var sel = b.getAttribute("data-copy"), text = sel ? document.querySelector(sel).textContent : b.getAttribute("data-text");
-    var done = function () { var o = b.textContent; b.textContent = "Skopiowano ✓"; b.classList.add("done"); setTimeout(function () { b.textContent = o; b.classList.remove("done"); }, 1600); };
-    if (navigator.clipboard) navigator.clipboard.writeText(text).then(done, function () {}); else done();
+    var b = e.target.closest(".copy");
+    if (b) {
+      var sel = b.getAttribute("data-copy"), src = sel ? document.querySelector(sel) : null;
+      var text = src ? src.textContent.trim() : b.getAttribute("data-text");
+      copyText(text).then(function (ok) { flash(b, ok); if (!ok && src) selectAll(src); });
+      return;
+    }
+    // Clicking a command box selects its whole content for manual copying.
+    var code = e.target.closest(".install code, .card .foot code, .panel pre");
+    if (code && !window.getSelection().toString()) selectAll(code);
   });
 
   fetch(REGISTRY, { cache: "no-cache" })
