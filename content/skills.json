@@ -1,0 +1,497 @@
+{
+  "biala-lista": {
+    "title": "Biała lista VAT: NIP i rachunek kontrahenta",
+    "h1": "Sprawdzanie NIP i białej listy VAT",
+    "description": "Sprawdź status VAT firmy i powiązanie rachunku z NIP. Skill dla agenta AI korzysta z oficjalnego wykazu Ministerstwa Finansów.",
+    "intro": [
+      "Przed przelewem do kontrahenta przydaje się jeden odczyt obejmujący nazwę firmy, status VAT i rachunek bankowy. Ten skill pozwala agentowi pobrać te informacje z wykazu Ministerstwa Finansów, zamiast odczytywać je z przypadkowego wyniku wyszukiwania.",
+      "Możesz wskazać NIP, REGON lub numer rachunku oraz dzień sprawdzenia. Wynik zawiera identyfikator zapytania i dane zwrócone przez źródło. Osobna funkcja sprawdza poprawność sum kontrolnych numerów bez połączenia z internetem."
+    ],
+    "usage": "Podaj dane kontrahenta i, przy weryfikacji płatności, konkretny numer konta. Agent powinien porównać powiązanie rachunku z NIP, a następnie przekazać status, datę oraz identyfikator odpowiedzi.",
+    "capabilities": [
+      "Status VAT i dane firmy według NIP lub REGON",
+      "Powiązanie konta bankowego z kontrahentem",
+      "Walidacja numerów i wyszukiwanie według rachunku"
+    ],
+    "prompts": [
+      "Sprawdź NIP 5261040828 na białej liście VAT.",
+      "Sprawdź, czy ten rachunek należy do kontrahenta o podanym NIP.",
+      "Zweryfikuj sumę kontrolną mojego numeru REGON."
+    ],
+    "limits": [
+      "Wynik opisuje dane wykazu na wskazany dzień; nie stanowi oceny rzetelności firmy.",
+      "Rachunek wirtualny sprawdzaj funkcją powiązania konta z NIP, zamiast samą listą kont."
+    ],
+    "related": [
+      "krs",
+      "nbp",
+      "terminy"
+    ]
+  },
+  "cert-pl": {
+    "title": "CERT Polska: sprawdzanie podejrzanego linku",
+    "h1": "Podejrzany link a lista ostrzeżeń CERT Polska",
+    "description": "Sprawdź domenę z SMS-a lub wiadomości na liście ostrzeżeń CERT Polska. Skill uwzględnia subdomeny i nie otwiera badanego adresu.",
+    "intro": [
+      "Wiadomość o dopłacie do paczki albo niespodziewany link z banku warto najpierw porównać z listą ostrzeżeń CERT Polska. Skill wyodrębnia domenę z adresu i sprawdza ją w aktywnym zbiorze, także wtedy, gdy link prowadzi do subdomeny.",
+      "Sprawdzenie nie wymaga otwierania podejrzanej strony. Agent otrzymuje informację o dopasowaniu, nazwę znalezionej domeny i czas pobrania listy. Obsługiwane są również domeny ze znakami narodowymi, normalizowane do formatu używanego w sieci."
+    ],
+    "usage": "Przekaż samą domenę albo pełny adres HTTP lub HTTPS. W odpowiedzi zwróć uwagę na dokładne dopasowanie i czas danych. Przy braku wpisu agent powinien jasno wyjaśnić granice takiego sprawdzenia.",
+    "capabilities": [
+      "Porównanie domeny z aktywną listą CERT",
+      "Dopasowanie subdomen oraz nazw IDN",
+      "Sprawdzenie bez odwiedzania badanego adresu"
+    ],
+    "prompts": [
+      "Sprawdź ten link z SMS-a na liście CERT Polska.",
+      "Czy podana domena figuruje na liście ostrzeżeń?",
+      "Sprawdź podejrzany adres dotyczący dopłaty do paczki."
+    ],
+    "limits": [
+      "Brak domeny na liście nie potwierdza bezpieczeństwa strony.",
+      "Skill nie rozwija skróconych linków i nie analizuje przekierowań ani treści witryny."
+    ],
+    "related": [
+      "inpost",
+      "biala-lista",
+      "krs"
+    ]
+  },
+  "energia": {
+    "title": "Ceny energii RCE z PSE i najtańsze okna",
+    "h1": "Ceny rynkowe energii RCE z PSE",
+    "description": "Pobierz ceny RCE z PSE, porównaj dni i znajdź najtańsze ciągłe okno. Skill pokazuje kompletność danych oraz ceny w PLN/MWh i PLN/kWh.",
+    "intro": [
+      "Ten skill przydaje się przy analizie rynkowych cen energii: pokazuje przedziały opublikowane przez PSE, ich minimum, maksimum i średnią. Możesz sprawdzić wybraną dobę albo zestawić dane z okresu do 31 dni.",
+      "Wyszukiwanie najtańszego okna porównuje ciągłe okresy o zadanej długości. Wynik zachowuje czas UTC i lokalny z przesunięciem, dzięki czemu uwzględnia także doby zmiany czasu. Opcjonalne zużycie w kWh pozwala obliczyć sam składnik RCE przy stałej mocy poboru."
+    ],
+    "usage": "Podaj datę i długość potrzebnego okna, na przykład dwie godziny. Przy porównaniu historycznym wskaż zakres dat. Agent powinien sprawdzić kompletność doby przed wskazaniem najniższej ceny.",
+    "capabilities": [
+      "Ceny RCE w jednostkach PLN/MWh i PLN/kWh",
+      "Najtańsze ciągłe okno zużycia",
+      "Podsumowanie okresu i brakujących przedziałów"
+    ],
+    "prompts": [
+      "Pokaż ceny RCE z PSE dla wybranego dnia.",
+      "Znajdź najtańsze dwie godziny według RCE.",
+      "Porównaj średnie ceny rynkowe z ostatnich siedmiu dni."
+    ],
+    "limits": [
+      "RCE nie jest końcową ceną na rachunku: umowa, VAT, dystrybucja i pozostałe składniki wymagają osobnego uwzględnienia.",
+      "Dane dla kolejnej doby mogą jeszcze nie być opublikowane; skill nie zastępuje ich prognozą."
+    ],
+    "related": [
+      "nbp",
+      "moja-gmina",
+      "terminy"
+    ]
+  },
+  "filmweb": {
+    "title": "Filmweb: oceny, obsada i dostępność VOD",
+    "h1": "Filmy, seriale i VOD z Filmwebu",
+    "description": "Znajdź film lub serial, ocenę, obsadę i informacje o VOD w Filmwebie. Skill dla agenta AI wyszukuje tytuły i pobiera szczegóły wybranej pozycji.",
+    "intro": [
+      "Gdy zastanawiasz się nad filmem na wieczór, agent może wyszukać tytuł w Filmwebie i odczytać jego ocenę, liczbę głosów, obsadę oraz opis. Informacje o premierze pomagają odróżnić podobnie nazwane produkcje i kolejne ekranizacje.",
+      "Po wybraniu właściwej pozycji można sprawdzić także dane dostępności VOD i oferowane rodzaje dostępu. Skill obsługuje filmy i seriale oraz szczegóły osób powiązanych z produkcją. W odpowiedzi warto zachować link do dokładnie tego tytułu, którego dotyczy wynik."
+    ],
+    "usage": "Podaj tytuł, rok albo link z Filmwebu. Przy wielu dopasowaniach doprecyzuj produkcję przed pobraniem szczegółów. O dostępność na platformie zapytaj osobno, wskazując znaleziony film lub serial.",
+    "capabilities": [
+      "Wyszukiwanie tytułów i odczyt ocen",
+      "Obsada, opis i daty premier",
+      "Platformy VOD i rodzaje dostępnych ofert"
+    ],
+    "prompts": [
+      "Jaką ocenę ma Matrix na Filmwebie?",
+      "Pokaż obsadę wybranego serialu.",
+      "Gdzie obejrzę ten film według danych Filmwebu?"
+    ],
+    "limits": [
+      "Integracja korzysta z nieoficjalnego interfejsu Filmwebu, który może się zmienić.",
+      "Dostępność i cena VOD wymagają potwierdzenia u dostawcy przed zakupem."
+    ],
+    "related": [
+      "nbp",
+      "imgw",
+      "terminy"
+    ]
+  },
+  "imgw": {
+    "title": "Pogoda, ostrzeżenia i stany rzek IMGW",
+    "h1": "Pomiary pogody i ostrzeżenia IMGW",
+    "description": "Sprawdź pomiary pogody, ostrzeżenia meteorologiczne i hydrologiczne oraz stany rzek. Skill korzysta z publicznych danych IMGW-PIB.",
+    "intro": [
+      "Skill pobiera pomiary ze stacji synoptycznych IMGW-PIB: temperaturę, wiatr, wilgotność, opady i dostępne dane o ciśnieniu. Możesz wskazać stację po nazwie albo znaleźć najbliższą na podstawie współrzędnych.",
+      "Osobne komendy udostępniają oficjalne ostrzeżenia meteorologiczne i hydrologiczne oraz pomiary z wodowskazów. Przy ostrzeżeniu istotne są obszar, stopień i czas obowiązywania, a przy stanie rzeki — konkretna stacja pomiarowa. Agent zachowuje źródło i czas danych w odpowiedzi."
+    ],
+    "usage": "Wskaż miejscowość lub lokalizację, a przy pytaniu o rzekę podaj jej nazwę albo wodowskaz. Przy planowaniu wyjścia sprawdź również aktualne ostrzeżenia dla odpowiedniego województwa.",
+    "capabilities": [
+      "Pogoda ze stacji i wyszukiwanie według GPS",
+      "Ostrzeżenia meteo i hydro",
+      "Stany wody oraz progi ostrzegawcze i alarmowe"
+    ],
+    "prompts": [
+      "Jaka temperatura jest na stacji IMGW w Zakopanem?",
+      "Pokaż ostrzeżenia IMGW dla województwa pomorskiego.",
+      "Sprawdź stan Wisły na wskazanym wodowskazie."
+    ],
+    "limits": [
+      "Pomiar stacji nie opisuje dokładnie każdego adresu w okolicy.",
+      "Niektóre wartości, na przykład ciśnienie na stacji górskiej, mogą być niedostępne."
+    ],
+    "related": [
+      "smog",
+      "odjazdy",
+      "terminy"
+    ]
+  },
+  "inpost": {
+    "title": "InPost: śledzenie paczki i najbliższy Paczkomat",
+    "h1": "Paczki i Paczkomaty InPost dla agenta AI",
+    "description": "Sprawdź status paczki InPost albo znajdź Paczkomat według kodu, miejscowości lub GPS. Skill pobiera dane z publicznego interfejsu InPost.",
+    "intro": [
+      "Podanie numeru przesyłki pozwala odczytać jej status i historię zdarzeń z InPost. Agent może wskazać ostatnią zmianę oraz docelowy automat, jeżeli takie informacje są dostępne w odpowiedzi operatora.",
+      "Druga część skilla służy do wyszukiwania Paczkomatów: po kodzie, mieście, ulicy, kodzie pocztowym lub współrzędnych. Wynik zawiera adres i wskazówki lokalizacji. Dzięki temu można odróżnić automaty znajdujące się blisko siebie i wybrać właściwy punkt."
+    ],
+    "usage": "Do śledzenia użyj własnego, 24-cyfrowego numeru przesyłki. Przy szukaniu automatu podaj kod punktu albo lokalizację. Agent powinien przekazać kod Paczkomatu wraz z adresem i opisem miejsca.",
+    "capabilities": [
+      "Status i historia przesyłki",
+      "Wyszukiwanie Paczkomatów po adresie lub kodzie",
+      "Najbliższe punkty według współrzędnych GPS"
+    ],
+    "prompts": [
+      "Sprawdź status mojej paczki InPost.",
+      "Znajdź Paczkomat blisko wskazanej lokalizacji.",
+      "Pokaż adres i opis położenia Paczkomatu o tym kodzie."
+    ],
+    "limits": [
+      "Skill odczytuje informacje operatora; nie nadaje przesyłki ani nie otwiera skrytki.",
+      "Przy szukaniu według GPS odległość pomaga porównać lokalizacje, ale nie wyznacza trasy dojścia."
+    ],
+    "related": [
+      "cert-pl",
+      "odjazdy",
+      "imgw"
+    ]
+  },
+  "krs": {
+    "title": "KRS: dane spółki, zarząd i reprezentacja",
+    "h1": "Dane KRS i zasady reprezentacji spółki",
+    "description": "Pobierz dane KRS, skład zarządu, prokurentów i sposób reprezentacji. Skill korzysta z odpisów udostępnianych przez Ministerstwo Sprawiedliwości.",
+    "intro": [
+      "Przy sprawdzaniu spółki sama lista członków zarządu nie wystarcza do ustalenia zasad reprezentacji. Ten skill odczytuje z KRS zarówno osoby ujawnione w rejestrze, jak i zapis określający sposób działania w imieniu podmiotu.",
+      "Możesz pobrać zwięzłe podsumowanie, samą reprezentację albo pełne dane odpisu. Wynik obejmuje także identyfikatory firmy, adres i dostępne informacje o likwidacji. Numer KRS pozwala trafić do właściwej spółki mimo podobnej nazwy innych podmiotów."
+    ],
+    "usage": "Podaj numer KRS i cel sprawdzenia. Przy pytaniu o podpisanie umowy agent powinien przytoczyć sposób reprezentacji oraz dane zarządu i prokurentów ujawnione w odpisie.",
+    "capabilities": [
+      "Podsumowanie danych spółki lub organizacji",
+      "Zarząd, prokurenci i sposób reprezentacji",
+      "Odczyt aktualnego albo pełnego odpisu"
+    ],
+    "prompts": [
+      "Sprawdź dane podmiotu o KRS 0000006865.",
+      "Jaki sposób reprezentacji wpisano w tym KRS?",
+      "Pokaż zarząd i prokurentów wskazanej spółki."
+    ],
+    "limits": [
+      "KRS obejmuje podmioty wpisane do tego rejestru; nie zastępuje ewidencji jednoosobowych działalności.",
+      "Dane rejestrowe i zapis reprezentacji wymagają odniesienia do konkretnej czynności prawnej."
+    ],
+    "related": [
+      "biala-lista",
+      "prawo",
+      "przetargi"
+    ]
+  },
+  "moja-gmina": {
+    "title": "Moja gmina: porównanie danych GUS BDL",
+    "h1": "Dane o gminach i powiatach z GUS BDL",
+    "description": "Porównaj ludność i inne wskaźniki gmin lub powiatów w GUS BDL. Skill dobiera wspólny rok i zachowuje jednostki miary oraz definicje danych.",
+    "intro": [
+      "Porównanie dwóch gmin lub powiatów jest użyteczne dopiero wtedy, gdy dane opisują ten sam poziom administracyjny i ten sam rok. Skill wyszukuje jednostki w Banku Danych Lokalnych GUS i pomaga dobrać właściwe wskaźniki do porównania.",
+      "Wynik zachowuje identyfikator jednostki, definicję wskaźnika, jednostkę miary i rok. Można podać rok samodzielnie albo wybrać najnowszy wspólny okres z danymi. Nazwy jednostek bywają zbieżne, dlatego ważne jest rozróżnienie gminy, miasta, części wiejskiej i powiatu."
+    ],
+    "usage": "Najpierw znajdź jednostki i wskaźnik. Następnie porównaj wskazane identyfikatory BDL w jednym roku. Agent powinien podać definicję danych, a przy brakach wyjaśnić zakres dostępnej serii.",
+    "capabilities": [
+      "Wyszukiwanie jednostek terytorialnych i wskaźników",
+      "Porównanie w podanym lub wspólnym najnowszym roku",
+      "Definicje, jednostki miar i oznaczenia braku danych"
+    ],
+    "prompts": [
+      "Znajdź gminy o nazwie Piaseczno w GUS BDL.",
+      "Porównaj liczbę ludności tych dwóch powiatów w jednym roku.",
+      "Wyszukaj wskaźnik budownictwa dostępny dla mojej gminy."
+    ],
+    "limits": [
+      "Nie każdy wskaźnik jest dostępny dla gminy; część danych dotyczy powiatów lub województw.",
+      "API GUS ma limity zapytań, a najnowszy rok może różnić się między seriami.",
+      "Podczas weryfikacji 5 listopada 2026 r. odczyty API GUS kończyły się błędami lub przekroczeniem czasu. Pełny wynik wymaga dostępnego źródła; lokalne testy nie potwierdzają bieżącej dostępności."
+    ],
+    "related": [
+      "nieruchomosci",
+      "energia",
+      "przetargi"
+    ]
+  },
+  "nbp": {
+    "title": "Kursy NBP, przeliczanie walut i faktury",
+    "h1": "Kursy walut i dane NBP dla agenta AI",
+    "description": "Pobierz kurs waluty, numer tabeli NBP i dane historyczne. Skill przelicza waluty, obsługuje tryb faktury oraz cenę złota z API NBP.",
+    "intro": [
+      "Ten skill pobiera kursy walut bezpośrednio z API Narodowego Banku Polskiego. Zamiast samej liczby otrzymujesz także datę obowiązywania i numer tabeli, co ułatwia wykorzystanie wyniku w zestawieniu lub rozliczeniu.",
+      "Dostępne są odczyt jednej waluty, pełne tabele, przeliczanie kwot i oficjalna cena złota. Osobny tryb faktury dobiera kurs zgodnie z regułą zaimplementowaną w narzędziu i zwraca datę przyjętą do obliczenia. Warto wskazać cel przeliczenia, ponieważ zwykły kurs i tryb faktury pełnią różne funkcje."
+    ],
+    "usage": "Podaj kwotę, walutę, datę i przeznaczenie wyniku. Agent powinien zachować numer tabeli i dzień kursu. Dla danych historycznych wskaż konkretny dzień zamiast polegać na bieżącej tabeli.",
+    "capabilities": [
+      "Bieżące i historyczne kursy walut",
+      "Przeliczanie kwot oraz osobny tryb faktury",
+      "Tabele NBP i cena złota"
+    ],
+    "prompts": [
+      "Pokaż kurs EUR z NBP wraz z numerem tabeli.",
+      "Przelicz 100 USD na PLN według kursu ze wskazanego dnia.",
+      "Oblicz przeliczenie faktury w EUR w trybie faktury."
+    ],
+    "limits": [
+      "Kurs referencyjny NBP nie jest ofertą wymiany w banku lub kantorze.",
+      "Brak tabeli dla wybranego dnia wymaga uwzględnienia dat publikacji i celu przeliczenia."
+    ],
+    "related": [
+      "biala-lista",
+      "terminy",
+      "energia"
+    ]
+  },
+  "nfz": {
+    "title": "Kolejki NFZ i czas oczekiwania na świadczenie",
+    "h1": "Sprawdzanie kolejek i placówek NFZ",
+    "description": "Znajdź placówki NFZ i porównaj prognozowany czas oczekiwania na świadczenie. Skill podaje lokalizację, kontakt oraz źródło danych.",
+    "intro": [
+      "Skill pomaga odszukać placówki realizujące wskazane świadczenie i porównać dane o oczekiwaniu publikowane przez NFZ. Możesz szukać według miejscowości, województwa albo odległości od podanej lokalizacji.",
+      "Wyniki obejmują nazwę i adres placówki, telefon oraz dostępne wskaźniki kolejki. Najpierw można wyszukać oficjalną nazwę świadczenia, a następnie ograniczyć listę do odpowiedniego obszaru. Ułatwia to przygotowanie listy miejsc, do których warto zadzwonić w sprawie rejestracji."
+    ],
+    "usage": "Podaj rodzaj świadczenia i obszar poszukiwania. Agent powinien wyjaśnić znaczenie prognozowanego czasu oczekiwania oraz przekazać telefon placówki, aby potwierdzić szczegóły bezpośrednio w rejestracji.",
+    "capabilities": [
+      "Słownik świadczeń i wyszukiwanie placówek",
+      "Porównanie prognozowanego czasu oczekiwania",
+      "Placówki w okolicy oraz dane kontaktowe"
+    ],
+    "prompts": [
+      "Znajdź placówki NFZ wykonujące rezonans w mojej okolicy.",
+      "Porównaj kolejki do wskazanego świadczenia w województwie pomorskim.",
+      "Pokaż telefon i adres placówki z najkrótszym prognozowanym oczekiwaniem."
+    ],
+    "limits": [
+      "Prognozowany czas oczekiwania PCUŚ jest wskaźnikiem statystycznym, a nie gwarantowanym terminem wizyty.",
+      "Skill przekazuje dane administracyjne; nie ocenia leczenia ani nie rezerwuje wizyty."
+    ],
+    "related": [
+      "odjazdy",
+      "terminy",
+      "moja-gmina"
+    ]
+  },
+  "nieruchomosci": {
+    "title": "RCN: ceny transakcyjne mieszkań i nieruchomości",
+    "h1": "Ceny transakcyjne z Rejestru Cen Nieruchomości",
+    "description": "Znajdź transakcje nieruchomości z RCN według obszaru, dat i rodzaju. Skill pokazuje próbę danych, udziały i ograniczenia porównań.",
+    "intro": [
+      "Ceny z Rejestru Cen Nieruchomości pomagają sprawdzić, jakie transakcje odnotowano w wybranej okolicy. Skill pobiera dane z usługi Geoportalu i pozwala ograniczyć próbę według obszaru, daty aktu notarialnego, rodzaju nieruchomości oraz rynku.",
+      "Wynik pokazuje cenę i pola źródłowe potrzebne do ostrożnego porównania. Rozróżnienie lokalu mieszkalnego, garażu i udziału we własności ma znaczenie dla interpretacji kwoty za metr. Statystyki dotyczą pobranej i przefiltrowanej próby, której rozmiar jest podany w odpowiedzi."
+    ],
+    "usage": "Podaj współrzędne lub prostokątny obszar WGS84 oraz interesujący Cię rodzaj nieruchomości. Wyszukiwanie wokół punktu obejmuje kwadrat, którego bok ma dwukrotność wskazanego promienia. Agent powinien pokazać zakres pobrania i filtry przed omówieniem cen.",
+    "capabilities": [
+      "Transakcje lokali, budynków i działek",
+      "Filtry dat, rynku, funkcji i powierzchni",
+      "Statystyki porównywalnych lokali mieszkalnych z pełną własnością"
+    ],
+    "prompts": [
+      "Sprawdź transakcje lokali mieszkalnych w podanym obszarze.",
+      "Porównaj dane z RCN dla rynku wtórnego w tej okolicy.",
+      "Pokaż wielkość próby i udziały własności przy znalezionych transakcjach."
+    ],
+    "limits": [
+      "Kompletność danych różni się między powiatami, a centralna usługa RCN ma charakter tymczasowy.",
+      "Wynik nie jest wyceną konkretnego mieszkania; data aktu i dostępna próba mogą nie oddawać bieżącej sytuacji.",
+      "Filtry zawężają próbę najnowszych rekordów obszaru: domyślnie 200, maksymalnie 1000. Statystyki cen dotyczą wyłącznie kwalifikujących się lokali mieszkalnych z pełną własnością. Akty obejmujące wiele obiektów i rozpoznane składniki pakietów są wyłączane ze statystyk."
+    ],
+    "related": [
+      "moja-gmina",
+      "krs",
+      "przetargi"
+    ]
+  },
+  "odjazdy": {
+    "title": "Odjazdy: Gdańsk, Poznań i Szczecin",
+    "h1": "Odjazdy autobusów i tramwajów w trzech miastach",
+    "description": "Znajdź przystanek i sprawdź odjazdy w Gdańsku, Poznaniu i Szczecinie. Skill rozróżnia prognozy na żywo, rozkład i nieaktualne dane.",
+    "intro": [
+      "Skill łączy tablice odjazdów trzech sieci: ZTM Gdańsk, ZTM Poznań przez Wirtualny Monitor PEKA oraz ZDiTM Szczecin. Najpierw wyszukujesz właściwy słupek przystankowy, a następnie odczytujesz linie, kierunki i dostępne czasy odjazdu.",
+      "Wynik odróżnia dane rozkładowe od prognoz operatora i sygnalizuje znaną nieaktualność. W Gdańsku i Szczecinie można szukać przystanków również według GPS; w Poznaniu dostępne jest wyszukiwanie po nazwie. Obsługiwane są także przystanki podmiejskie obecne w zbiorach tych organizatorów."
+    ],
+    "usage": "Podaj miasto, przystanek i kierunek jazdy. Przy kilku słupkach wybierz właściwą stronę ulicy. Agent powinien podać źródło, status kursu oraz informację, czy świeżość prognozy jest potwierdzona.",
+    "capabilities": [
+      "Wyszukiwanie przystanków i konkretnych słupków",
+      "Tablice odjazdów oraz filtrowanie według linii",
+      "Rozróżnienie rozkładu, prognozy i świeżości danych"
+    ],
+    "prompts": [
+      "Pokaż odjazdy z Dworca Głównego w Gdańsku.",
+      "Znajdź słupki Ronda Kaponiera w Poznaniu i ich kierunki.",
+      "Jakie przystanki i odjazdy są blisko tej lokalizacji w Szczecinie?"
+    ],
+    "limits": [
+      "Zasięg obejmuje trzy obsługiwane sieci; skill nie planuje przesiadek ani nie kupuje biletów.",
+      "PEKA nie podaje czasu ostatniego pomiaru, więc świeżość prognozy w Poznaniu pozostaje nieznana."
+    ],
+    "related": [
+      "inpost",
+      "imgw",
+      "nfz"
+    ]
+  },
+  "prawo": {
+    "title": "Polskie prawo: artykuły i status ustaw",
+    "h1": "Treść przepisów i status aktów prawnych",
+    "description": "Znajdź akt prawny, odczytaj artykuł i sprawdź status oraz teksty jednolite. Skill korzysta z oficjalnych danych legislacyjnych Sejmu.",
+    "intro": [
+      "Skill pomaga dotrzeć do treści konkretnego artykułu i ustalić, z jakiego dokumentu pochodzi jego brzmienie. Obsługuje wyszukiwanie aktów, popularne skróty kodeksów oraz dane o statusie ustawy i jej tekstach jednolitych.",
+      "Przy kolejnych zmianach ustawy sam cytat może być niewystarczający. Wynik zawiera informacje o źródle tekstu i wykrytych zmianach, które mogą wpływać na aktualność. Agent może przekazać odnośnik do dokumentu i wyjaśnić, gdy najnowsze opracowanie jest dostępne jedynie jako PDF."
+    ],
+    "usage": "Podaj nazwę ustawy lub skrót kodeksu oraz numer artykułu. Gdy pytanie dotyczy aktualnego stanu, zwróć uwagę na ostrzeżenia o zmianach i dokument źródłowy wskazany przez narzędzie.",
+    "capabilities": [
+      "Treść konkretnego artykułu i jego źródło",
+      "Status ustawy, zmiany i teksty jednolite",
+      "Wyszukiwanie aktów według tytułu"
+    ],
+    "prompts": [
+      "Pokaż treść art. 30 Kodeksu pracy wraz ze źródłem.",
+      "Sprawdź status wskazanej ustawy i najnowszy tekst jednolity.",
+      "Znajdź akty prawne dotyczące podanej frazy."
+    ],
+    "limits": [
+      "Narzędzie udostępnia tekst i metadane, a nie rozstrzygnięcie indywidualnej sprawy.",
+      "Późniejsze nowelizacje lub tekst dostępny wyłącznie w PDF mogą ograniczać automatyczny odczyt aktualnego artykułu."
+    ],
+    "related": [
+      "krs",
+      "sejm",
+      "terminy"
+    ]
+  },
+  "przetargi": {
+    "title": "Przetargi BZP: wyszukiwanie ogłoszeń",
+    "h1": "Wyszukiwanie zamówień publicznych w BZP",
+    "description": "Znajdź ogłoszenia BZP według przedmiotu, kodu CPV, dat i województwa zamawiającego. Skill pobiera dane z oficjalnego API e-Zamówienia.",
+    "intro": [
+      "Dla wykonawcy szukającego nowych zleceń przydatne jest szybkie przeszukanie ogłoszeń o zamówieniu. Skill korzysta z publicznego API BZP i pozwala łączyć temat zamówienia z kodem CPV, datami publikacji oraz województwem zamawiającego.",
+      "Wyniki zawierają identyfikator i dane ogłoszenia, a osobna komenda pobiera jego szczegóły. Przy większej liczbie dopasowań można kontynuować pobieranie z kursorem, zachowując te same filtry. Kod CPV pozwala szukać kategorii usług także wtedy, gdy tytuły zamówień są sformułowane różnie."
+    ],
+    "usage": "Wskaż rodzaj usługi albo kod CPV i okres publikacji. Po znalezieniu ogłoszenia agent powinien sprawdzić pełny zakres i dane źródłowe przed oceną, czy zamówienie odpowiada potrzebom wykonawcy.",
+    "capabilities": [
+      "Wyszukiwanie według przedmiotu lub CPV",
+      "Daty publikacji i województwo zamawiającego",
+      "Szczegóły ogłoszenia oraz kontynuacja wyników"
+    ],
+    "prompts": [
+      "Znajdź ogłoszenia BZP dotyczące tworzenia stron internetowych.",
+      "Wyszukaj zamówienia według wskazanego kodu CPV.",
+      "Pokaż szczegóły ogłoszenia o podanym numerze BZP."
+    ],
+    "limits": [
+      "Województwo dotyczy zamawiającego i nie musi oznaczać miejsca wykonania zamówienia.",
+      "Treść ogłoszenia i podany termin nie gwarantują, że postępowanie nadal przyjmuje oferty."
+    ],
+    "related": [
+      "krs",
+      "biala-lista",
+      "moja-gmina"
+    ]
+  },
+  "sejm": {
+    "title": "Sejm RP: głosowania, posłowie i projekty ustaw",
+    "h1": "Głosowania i prace Sejmu RP",
+    "description": "Sprawdź wyniki głosowań, głos posła i etapy prac nad projektem ustawy. Skill pobiera publiczne dane z oficjalnego API Sejmu RP.",
+    "intro": [
+      "Skill daje agentowi dostęp do danych o posłach, głosowaniach i pracach nad projektami ustaw publikowanych przez Kancelarię Sejmu. Możesz odszukać konkretne głosowanie, sprawdzić rozkład głosów albo odczytać głos wskazanego posła.",
+      "Do śledzenia projektu służą wyszukiwanie druków i odczyt etapów procesu legislacyjnego. Dostępne są również interpelacje i odpowiedzi. Każdy wynik wymaga właściwej kadencji oraz identyfikacji posiedzenia, głosowania lub druku, aby podobne tytuły nie prowadziły do mylnego porównania."
+    ],
+    "usage": "Podaj temat, numer druku lub dane głosowania. Agent powinien wskazać kadencję i dokument źródłowy, a następnie przedstawić liczby oraz etapy prac bez dopisywania intencji uczestników.",
+    "capabilities": [
+      "Wyniki głosowań i głosy poszczególnych posłów",
+      "Wyszukiwanie druków i etapów prac",
+      "Dane posłów, komisji oraz interpelacji"
+    ],
+    "prompts": [
+      "Jak głosowano w Sejmie nad wskazanym projektem?",
+      "Sprawdź głos tego posła w konkretnym głosowaniu.",
+      "Na jakim etapie prac jest projekt o podanym numerze druku?"
+    ],
+    "limits": [
+      "Dane opisują działania i dokumenty parlamentarne, a nie motywy posłów.",
+      "Podobnie nazwane projekty i głosowania należy rozróżniać numerem, datą i kadencją."
+    ],
+    "related": [
+      "prawo",
+      "moja-gmina",
+      "przetargi"
+    ]
+  },
+  "smog": {
+    "title": "Smog i jakość powietrza: pomiary GIOŚ",
+    "h1": "Jakość powietrza i pomiary smogu z GIOŚ",
+    "description": "Sprawdź PM10, PM2.5 i polski indeks jakości powietrza. Skill wyszukuje stacje GIOŚ według miasta lub GPS i pokazuje czas każdego pomiaru.",
+    "intro": [
+      "Skill pobiera pomiary z oficjalnych stacji GIOŚ i prezentuje dostępne stężenia zanieczyszczeń wraz z polskim indeksem jakości powietrza. Możesz wyszukać stacje w mieście albo znaleźć najbliższą na podstawie współrzędnych.",
+      "Przy jakości powietrza istotna jest godzina obserwacji: różne czujniki mogą mieć dane z innych przedziałów. Wynik zachowuje te czasy i oznacza brak bieżącego pomiaru. Dzięki temu starsza wartość nie udaje aktualnego odczytu, a brak danych nie jest zamieniany na zero."
+    ],
+    "usage": "Wskaż miasto lub lokalizację. Jeżeli w mieście działa kilka stacji, sprawdź ich położenie przed wyborem. Agent powinien podać stację, wartość, jednostkę, czas pomiaru oraz kategorię indeksu GIOŚ.",
+    "capabilities": [
+      "Wyszukiwanie stacji według miasta i GPS",
+      "Odczyt PM10, PM2.5 i dostępnych zanieczyszczeń",
+      "Polski indeks jakości powietrza i czasy pomiarów"
+    ],
+    "prompts": [
+      "Jaka jest jakość powietrza na stacji GIOŚ w Krakowie?",
+      "Znajdź najbliższą stację i pokaż pomiar PM2.5.",
+      "Sprawdź, z której godziny pochodzą dostępne pomiary smogu."
+    ],
+    "limits": [
+      "Jedna stacja nie opisuje średniej dla całego miasta ani warunków przy konkretnym adresie.",
+      "Dane są wstępne, mogą być korygowane i nie stanowią prognozy ani porady medycznej."
+    ],
+    "related": [
+      "imgw",
+      "moja-gmina",
+      "odjazdy"
+    ]
+  },
+  "terminy": {
+    "title": "Dni robocze, święta i terminy rozliczeń",
+    "h1": "Dni robocze i terminy w polskim kalendarzu",
+    "description": "Policz dni robocze, wymiar czasu pracy i datę płatności. Skill działa offline i uwzględnia polskie święta oraz standardowe terminy rozliczeń.",
+    "intro": [
+      "Skill pozwala policzyć dni robocze w podanym okresie, sprawdzić święta i obliczyć miesięczny wymiar czasu pracy. Działa lokalnie, więc do obliczeń kalendarzowych nie potrzebuje połączenia z internetem ani zewnętrznego konta.",
+      "Osobne funkcje dodają dni kalendarzowe lub robocze do wskazanej daty i wyznaczają standardowe terminy miesięcznych rozliczeń. Wynik pokazuje zastosowaną regułę oraz ewentualne przesunięcie terminu. Przy planowaniu pracy i płatności warto wskazać rodzaj daty, ponieważ różne obliczenia mają różne założenia."
+    ],
+    "usage": "Podaj daty lub miesiąc oraz rodzaj obliczenia. Przy terminie płatności określ liczbę dni i to, czy chodzi o dni kalendarzowe czy robocze. Agent powinien przekazać założenia wraz z wynikiem.",
+    "capabilities": [
+      "Liczba dni roboczych i lista świąt",
+      "Miesięczny wymiar czasu pracy",
+      "Terminy płatności i standardowych rozliczeń miesięcznych"
+    ],
+    "prompts": [
+      "Ile dni roboczych jest w grudniu 2026?",
+      "Wyznacz termin płatności 14 dni od wskazanej daty.",
+      "Pokaż standardowe terminy rozliczeń za podany miesiąc."
+    ],
+    "limits": [
+      "Wymiar czasu pracy zakłada pełny etat i jednomiesięczny okres rozliczeniowy.",
+      "Terminy dotyczą standardowych rozliczeń miesięcznych; szczególne przypadki i dodatkowe dni wolne wymagają osobnego sprawdzenia."
+    ],
+    "related": [
+      "nbp",
+      "biala-lista",
+      "prawo"
+    ]
+  }
+}
