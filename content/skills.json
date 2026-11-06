@@ -315,9 +315,9 @@
       "Filtry zawężają próbę najnowszych rekordów obszaru: domyślnie 200, maksymalnie 1000. Statystyki cen dotyczą wyłącznie kwalifikujących się lokali mieszkalnych z pełną własnością. Akty obejmujące wiele obiektów i rozpoznane składniki pakietów są wyłączane ze statystyk."
     ],
     "related": [
+      "dzialki",
       "moja-gmina",
-      "krs",
-      "przetargi"
+      "krs"
     ]
   },
   "odjazdy": {
@@ -492,6 +492,94 @@
       "nbp",
       "biala-lista",
       "prawo"
+    ]
+  },
+  "dzialki": {
+    "title": "Działki ewidencyjne: wyszukiwanie w ULDK",
+    "h1": "Wyszukiwanie działek ewidencyjnych w ULDK",
+    "description": "Znajdź działkę po identyfikatorze, obrębie i numerze lub punkcie GPS. Skill korzysta z ULDK GUGiK i podaje granice oraz źródło danych.",
+    "intro": [
+      "Pełny identyfikator działki pozwala ustalić, którego obiektu dotyczą mapa, ogłoszenie lub dokument. Skill korzysta z oficjalnej usługi ULDK GUGiK i wyszukuje działki według identyfikatora ewidencyjnego, obrębu i numeru albo wskazanego punktu na mapie.",
+      "Wynik zawiera dostępne nazwy jednostek administracyjnych, identyfikator, źródło oraz geometrię granic. Każda geometria ma wskazany układ współrzędnych. Dla WGS84 można otrzymać także GeoJSON, co ułatwia wykorzystanie wyniku w narzędziu mapowym."
+    ],
+    "usage": "Podaj pełny identyfikator EGiB albo nazwę obrębu i numer działki. Jeżeli wskazujesz współrzędne, skill szuka działki obejmującej punkt. Przy zbieżnych nazwach obrębów porównaj jednostki administracyjne przed wyborem wyniku.",
+    "capabilities": [
+      "Wyszukiwanie po identyfikatorze EGiB lub numerze w obrębie",
+      "Wskazanie działki zawierającej podany punkt GPS",
+      "Granice działki z jawnym układem współrzędnych i źródłem"
+    ],
+    "prompts": [
+      "Znajdź działkę o identyfikatorze 022602_1.0003.59.",
+      "Znajdź działkę 134 w obrębie Krzewina i pokaż możliwe dopasowania.",
+      "Która działka obejmuje punkt o podanych współrzędnych?"
+    ],
+    "limits": [
+      "Wynik nie podaje właściciela ani księgi wieczystej i nie rozstrzyga możliwości zabudowy. Geometria nie stanowi urzędowego ustalenia powierzchni.",
+      "Dostępność i aktualność zależą od danych udostępnionych usłudze. Punkt wskazuje działkę obejmującą lokalizację, a nie najbliższą działkę."
+    ],
+    "related": [
+      "nieruchomosci",
+      "moja-gmina",
+      "prawo"
+    ]
+  },
+  "ostrzezenia-gis": {
+    "title": "Ostrzeżenia GIS: żywność, produkty i partie",
+    "h1": "Ostrzeżenia GIS o żywności i produktach",
+    "description": "Przejrzyj ostrzeżenia GIS i wyszukaj produkt lub markę w treści komunikatów. Skill zachowuje źródło, daty oraz numery partii z ogłoszeń.",
+    "intro": [
+      "Ostrzeżenie GIS może dotyczyć żywności, suplementu diety lub wyrobu do kontaktu z żywnością. Skill odczytuje komunikaty publikowane przez Główny Inspektorat Sanitarny, a następnie pozwala porównać wskazane w nich dane produktu, partii i daty z opakowaniem.",
+      "Możesz przejrzeć listę, wyszukać nazwę produktu lub markę w treści pobranych ogłoszeń albo odczytać wskazany adres komunikatu GIS. Wynik zachowuje tekst i tabele, dzięki czemu informacje o partiach oraz datach pozostają powiązane ze źródłem."
+    ],
+    "usage": "Podaj nazwę produktu lub marki, a następnie porównaj znaleziony komunikat z numerem partii i datą na opakowaniu. Agent powinien przytoczyć zalecenia GIS oraz podać link i datę publikacji.",
+    "capabilities": [
+      "Lista ostrzeżeń z oficjalnej strony GIS",
+      "Wyszukiwanie produktu lub marki w treści komunikatów",
+      "Treść komunikatu: akapity, tabele, daty i oznaczenia partii"
+    ],
+    "prompts": [
+      "Pokaż najnowsze ostrzeżenia GIS dotyczące żywności.",
+      "Wyszukaj nazwę tego produktu w komunikatach GIS.",
+      "Odczytaj wskazany komunikat i pokaż numery partii oraz zalecenia GIS."
+    ],
+    "limits": [
+      "Wyszukiwanie obejmuje ograniczoną liczbę stron listy: domyślnie dwie, maksymalnie pięć. Daty filtrują wyłącznie pobrane strony, nie całe archiwum.",
+      "Brak dopasowania nie potwierdza bezpieczeństwa produktu. Nazwa produktu bez zgodnej partii i daty nie przesądza, że komunikat dotyczy konkretnego opakowania.",
+      "Roczne archiwa oraz dane widoczne wyłącznie na zdjęciach nie są odczytywane. Sprawdź także oryginalny komunikat GIS."
+    ],
+    "related": [
+      "produkty",
+      "cert-pl",
+      "prawo"
+    ]
+  },
+  "produkty": {
+    "title": "Produkty spożywcze: kod kreskowy, skład i wartości odżywcze",
+    "h1": "Dane produktów spożywczych z Open Food Facts",
+    "description": "Sprawdź produkt po kodzie kreskowym lub nazwie: skład, deklarowane alergeny i wartości odżywcze. Skill korzysta ze społecznościowej bazy Open Food Facts.",
+    "intro": [
+      "Kod kreskowy może pomóc odszukać dane produktu spożywczego: nazwę, markę, ilość, skład oraz wartości odżywcze. Skill pobiera te informacje z Open Food Facts, otwartej bazy uzupełnianej przez społeczność, i zachowuje link do karty źródłowej.",
+      "Gdy nie masz kodu, możesz szukać po nazwie. Domyślny zakres obejmuje produkty z zadeklarowaną sprzedażą w Polsce, a dodatkowa opcja rozszerza go na świat. Po wybraniu produktu odczyt według kodu pokazuje dostępny skład, język opisu i podstawę wartości odżywczych, na przykład 100 g, 100 ml albo porcję."
+    ],
+    "usage": "Podaj kod kreskowy GTIN albo nazwę produktu spożywczego. Przy porównaniu sprawdź wariant, wielkość opakowania i jednostki. Informacje o składzie i alergenach zestaw z aktualną etykietą konkretnego opakowania.",
+    "capabilities": [
+      "Odczyt produktu według kodu kreskowego GTIN",
+      "Wyszukiwanie nazwy na rynku polskim lub w całej bazie",
+      "Skład, deklarowane alergeny, wartości odżywcze i dostępny Nutri-Score"
+    ],
+    "prompts": [
+      "Sprawdź skład produktu z podanym kodem kreskowym.",
+      "Znajdź ten produkt spożywczy w Open Food Facts.",
+      "Pokaż deklarowane alergeny i podstawę podanych wartości odżywczych."
+    ],
+    "limits": [
+      "To społecznościowa baza, której wpis może być niepełny, nieaktualny lub dotyczyć innego wariantu. Brak alergenu w odpowiedzi nie potwierdza jego nieobecności w produkcie.",
+      "Zakres Polska oznacza zadeklarowany kraj sprzedaży, a nie pochodzenie produktu. Skill nie podaje cen, dostępności sklepowej ani nie składa zamówień."
+    ],
+    "related": [
+      "ostrzezenia-gis",
+      "cert-pl",
+      "inpost"
     ]
   }
 }

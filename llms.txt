@@ -1,6 +1,6 @@
 # Polskie Skille
 
-> Open-source registry of skills for AI agents that give access to Polish services, official APIs and public data: business registers, exchange rates, weather, healthcare queues, legislation, parcels, domain warnings, air quality, procurement, property transactions, urban departures, energy prices and local statistics. Every skill is a SKILL.md instruction file plus a Python 3.8+ standard-library CLI that prints JSON to stdout.
+> Open-source registry of skills for AI agents that give access to Polish services, official APIs and public data: business registers, exchange rates, weather, healthcare queues, legislation, parcels, domain warnings, air quality, procurement, property transactions, urban departures, energy prices, local statistics, parcel boundaries, GIS product warnings and Open Food Facts labels. Every skill is a SKILL.md instruction file plus a Python 3.8+ standard-library CLI that prints JSON to stdout.
 
 ## Start here
 
