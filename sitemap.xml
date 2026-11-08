@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://polskieskille.pl/</loc></url>
+  <url><loc>https://polskieskille.pl/skille/adresy/</loc></url>
   <url><loc>https://polskieskille.pl/skille/biala-lista/</loc></url>
+  <url><loc>https://polskieskille.pl/skille/ceny-deweloperow/</loc></url>
   <url><loc>https://polskieskille.pl/skille/cert-pl/</loc></url>
   <url><loc>https://polskieskille.pl/skille/dzialki/</loc></url>
   <url><loc>https://polskieskille.pl/skille/energia/</loc></url>
@@ -9,16 +11,19 @@
   <url><loc>https://polskieskille.pl/skille/imgw/</loc></url>
   <url><loc>https://polskieskille.pl/skille/inpost/</loc></url>
   <url><loc>https://polskieskille.pl/skille/krs/</loc></url>
+  <url><loc>https://polskieskille.pl/skille/leki/</loc></url>
   <url><loc>https://polskieskille.pl/skille/moja-gmina/</loc></url>
   <url><loc>https://polskieskille.pl/skille/nbp/</loc></url>
   <url><loc>https://polskieskille.pl/skille/nfz/</loc></url>
   <url><loc>https://polskieskille.pl/skille/nieruchomosci/</loc></url>
   <url><loc>https://polskieskille.pl/skille/odjazdy/</loc></url>
   <url><loc>https://polskieskille.pl/skille/ostrzezenia-gis/</loc></url>
+  <url><loc>https://polskieskille.pl/skille/otwarte-dane/</loc></url>
   <url><loc>https://polskieskille.pl/skille/prawo/</loc></url>
   <url><loc>https://polskieskille.pl/skille/produkty/</loc></url>
   <url><loc>https://polskieskille.pl/skille/przetargi/</loc></url>
   <url><loc>https://polskieskille.pl/skille/sejm/</loc></url>
   <url><loc>https://polskieskille.pl/skille/smog/</loc></url>
+  <url><loc>https://polskieskille.pl/skille/solid-jobs/</loc></url>
   <url><loc>https://polskieskille.pl/skille/terminy/</loc></url>
 </urlset>

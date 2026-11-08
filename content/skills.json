@@ -581,5 +581,152 @@
       "cert-pl",
       "inpost"
     ]
+  },
+  "adresy": {
+    "title": "Adresy i GPS z GUGiK dla agenta AI",
+    "h1": "Współrzędne adresu i adres dla GPS",
+    "description": "Znajdź współrzędne polskiego adresu lub pobliskie adresy dla punktu GPS. Skill korzysta z oficjalnej usługi GUGiK i zachowuje niejednoznaczne wyniki.",
+    "intro": [
+      "Adres jest często początkiem szukania usług w pobliżu. Skill adresy pozwala agentowi odczytać współrzędne z oficjalnej usługi GUGiK UUG i wykorzystać je do dalszego pytania o stację jakości powietrza, paczkomat lub inną usługę.",
+      "Możesz też wskazać GPS i odczytać pobliskie adresy. Jeśli nazwa pasuje do wielu miejsc, agent zachowuje kandydatów zamiast wybierać przypadkowy punkt."
+    ],
+    "usage": "Podaj miejscowość, ulicę i numer. Sprawdź pełny adres w odpowiedzi przed wykorzystaniem GPS w kolejnym zadaniu.",
+    "capabilities": [
+      "Wyszukiwanie polskich adresów i ich współrzędnych",
+      "Odczyt pobliskich adresów dla GPS",
+      "Zachowanie kandydatów przy niejednoznacznym dopasowaniu"
+    ],
+    "prompts": [
+      "Znajdź współrzędne adresu Marki, Andersa 1.",
+      "Jaki adres znajduje się w pobliżu podanego GPS?",
+      "Pokaż kandydatów dla niejednoznacznej nazwy miejscowości."
+    ],
+    "limits": [
+      "Wynik może być przybliżony lub niejednoznaczny; sprawdź pełny opis miejsca.",
+      "Usługa nie ustala granic działki, właściciela ani dostępności usług pod adresem."
+    ],
+    "related": [
+      "dzialki",
+      "smog",
+      "inpost"
+    ]
+  },
+  "solid-jobs": {
+    "title": "Oferty i widełki SOLID.Jobs dla agenta AI",
+    "h1": "Oferty pracy i wynagrodzenia na SOLID.Jobs",
+    "description": "Wyszukaj oferty SOLID.Jobs i widełki osobno dla B2B oraz umowy o pracę. Skill pokazuje linki i zakres sprawdzonych stron jednego portalu.",
+    "intro": [
+      "Podczas szukania pracy przydaje się lista ofert odpowiadających technologii, miastu i trybowi pracy. Skill odczytuje oficjalne API SOLID.Jobs, zachowując linki do źródłowych ogłoszeń.",
+      "Widełki dla B2B i umowy o pracę pozostają odrębne. Dane obejmują jeden portal z domyślnym zakresem IT; nie są przeglądem całego polskiego rynku pracy."
+    ],
+    "usage": "Wskaż, że interesują Cię oferty SOLID.Jobs, podaj słowa kluczowe, miasto lub pracę zdalną. Porównuj wynagrodzenia z uwzględnieniem rodzaju umowy i jednostek źródła.",
+    "capabilities": [
+      "Oferty według słów kluczowych, lokalizacji i doświadczenia",
+      "Widełki z rozróżnieniem form umowy",
+      "Statystyki i linki do ogłoszeń portalu"
+    ],
+    "prompts": [
+      "Znajdź oferty Python zdalnie na SOLID.Jobs.",
+      "Pokaż osobno widełki B2B i UoP z SOLID.Jobs.",
+      "Jakie oferty SOLID.Jobs pasują do podanych słów kluczowych?"
+    ],
+    "limits": [
+      "Pokrycie dotyczy wyłącznie SOLID.Jobs, z domyślnym zakresem IT.",
+      "Odczyt jest ograniczony do wskazanego zakresu stron; skill nie składa aplikacji ani nie wysyła CV."
+    ],
+    "related": [
+      "terminy",
+      "nbp",
+      "otwarte-dane"
+    ]
+  },
+  "otwarte-dane": {
+    "title": "Wyszukiwanie zbiorów dane.gov.pl dla agenta AI",
+    "h1": "Zbiory, daty i źródła na dane.gov.pl",
+    "description": "Znajdź zbiory na dane.gov.pl, sprawdź pliki, daty publikacji i warunki ponownego użycia. Skill pomaga dotrzeć do właściwego źródła danych.",
+    "intro": [
+      "Znalezienie zbioru danych wymaga sprawdzenia, kto go publikuje, z jakiego okresu pochodzi i w jakiej postaci można go pobrać. Skill przeszukuje oficjalny katalog dane.gov.pl i odczytuje metadane zasobów.",
+      "Agent może przejść od tematu do zbioru, a następnie do linków plików i warunków ich użycia. To punkt wyjścia dla analizy wymagającej danych źródłowych."
+    ],
+    "usage": "Podaj temat i interesujący zakres. Przed analizą sprawdź wydawcę, datę danych, format pliku oraz licencję konkretnego zbioru.",
+    "capabilities": [
+      "Wyszukiwanie zbiorów publicznych",
+      "Metadane zasobów, daty i linki do plików",
+      "Warunki ponownego wykorzystywania danych"
+    ],
+    "prompts": [
+      "Znajdź otwarte dane o transporcie i pokaż źródła.",
+      "Sprawdź daty i pliki wybranego zbioru dane.gov.pl.",
+      "Jakie warunki ponownego użycia ma ten zbiór?"
+    ],
+    "limits": [
+      "Metadane katalogu nie potwierdzają jakości ani aktualności zawartości pliku.",
+      "Skill odkrywa zbiory i zasoby; interpretacja pliku wymaga odpowiedniego narzędzia lub dedykowanego skilla."
+    ],
+    "related": [
+      "moja-gmina",
+      "ceny-deweloperow",
+      "sejm"
+    ]
+  },
+  "ceny-deweloperow": {
+    "title": "Historia ceny mieszkania z cenników dewelopera",
+    "h1": "Jak zmieniała się cena mieszkania u dewelopera",
+    "description": "Sprawdź opublikowane ceny wybranego lokalu, zmiany w złotych i procentach oraz daty i luki w danych. Skill odczytuje obsługiwane pliki dane.gov.pl.",
+    "intro": [
+      "Przed rozmową z deweloperem możesz sprawdzić, jakie ceny wybranego lokalu opublikowano wcześniej. Skill odczytuje rozpoznane cenniki na dane.gov.pl i zachowuje dokładne kwoty, daty oraz źródła.",
+      "Dla jednych formatów plik zawiera historię wielu dni, a dla innych trzeba wskazać kilka cenników do porównania. Wynik rozróżnia obserwowane snapshoty i daty obowiązywania cen zadeklarowane przez wydawcę."
+    ],
+    "usage": "Podaj nazwę inwestycji lub dewelopera i oznaczenie budynku oraz lokalu. Agent powinien znaleźć właściwy zbiór, sprawdzić dokładną tożsamość lokalu i wskazać daty porównywanych danych.",
+    "capabilities": [
+      "Historia cen jednego lokalu w obsługiwanym pliku",
+      "Porównanie do trzech wybranych zasobów tego samego zbioru",
+      "Zmiany kwotowe i procentowe, daty i brakujące obserwacje"
+    ],
+    "prompts": [
+      "Pokaż historię ceny mieszkania POGO2/A/2C i daty danych.",
+      "Porównaj dwa opublikowane cenniki tego samego domu.",
+      "Pokaż najniższą zaobserwowaną cenę lokalu i luki w historii."
+    ],
+    "limits": [
+      "Pokrycie dotyczy rozpoznanych schematów i kopii plików na API dane.gov.pl; część źródeł pozostaje nieobsługiwana lub niedostępna.",
+      "Pojedyncza obserwacja nie ustala zmiany ceny. Cennik nie potwierdza dzisiejszej dostępności lokalu ani pełnej ceny z dopłatami.",
+      "Ceny są ofertowe; ceny zawartych transakcji sprawdza osobny skill nieruchomosci."
+    ],
+    "related": [
+      "nieruchomosci",
+      "dzialki",
+      "otwarte-dane"
+    ]
+  },
+  "leki": {
+    "title": "Oficjalne ulotki leków i opakowania z RPL",
+    "h1": "Znajdź ulotkę właściwego leku w RPL",
+    "description": "Znajdź lek po nazwie, substancji czynnej lub GTIN/EAN opakowania. Skill pokazuje moce, postacie i oficjalne linki do ulotek oraz ChPL z datą rejestru.",
+    "intro": [
+      "Podobna nazwa preparatu może prowadzić do kilku wpisów, mocy lub postaci. Skill leki korzysta z oficjalnego Rejestru Produktów Leczniczych i zachowuje osobne warianty, żeby agent mógł dopasować właściwy produkt.",
+      "Kod z opakowania pomaga znaleźć konkretny wpis. Wynik zawiera zadeklarowane substancje czynne, wielkość opakowania i linki do dokumentów przypisanych przez źródło, jeśli są dostępne."
+    ],
+    "usage": "Podaj nazwę, moc i postać leku lub kod GTIN/EAN z pudełka. Przy wielu dopasowaniach porównaj opakowanie i podmiot odpowiedzialny przed wybraniem ulotki.",
+    "capabilities": [
+      "Wyszukiwanie nazw i zadeklarowanych substancji czynnych",
+      "Dopasowanie opakowania po GTIN/EAN z kontrolą sumy",
+      "Oficjalne linki do ulotki i ChPL z datą danych RPL"
+    ],
+    "prompts": [
+      "Znajdź oficjalną ulotkę Apap 500 mg, tabletki powlekane.",
+      "Sprawdź kod 5909990296026 i podaj opakowanie.",
+      "Pokaż substancje czynne i link do ChPL konkretnego wpisu RPL."
+    ],
+    "limits": [
+      "Pierwsze użycie pobiera około 74 MB rejestru; lokalny indeks jest ponownie używany przez 24 godziny. Jawny tryb offline zachowuje datę starej kopii.",
+      "Brakujące dokumenty i skasowane opakowania są oznaczone; kod nie potwierdza autentyczności pudełka.",
+      "RPL nie potwierdza dostępności w aptece, refundacji, aktualnego wycofania partii ani odpowiedniego leczenia."
+    ],
+    "related": [
+      "nfz",
+      "ostrzezenia-gis",
+      "produkty"
+    ]
   }
 }
