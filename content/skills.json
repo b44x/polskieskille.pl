@@ -728,5 +728,35 @@
       "ostrzezenia-gis",
       "produkty"
     ]
+  },
+  "apteki": {
+    "title": "Apteki: adresy, telefony i status rejestru",
+    "h1": "Wyszukiwanie aptek w Rejestrze Aptek",
+    "description": "Znajdź aptekę po miejscowości, ulicy lub nazwie. Sprawdź adres, telefon, status wpisu i zgłoszone godziny z oficjalnego eksportu CeZ.",
+    "intro": [
+      "Skill pozwala agentowi znaleźć placówki w publicznym Rejestrze Aptek udostępnianym przez Centrum e-Zdrowia. Wynik obejmuje adres apteki, dostępne dane kontaktowe, status wpisu oraz dane zezwolenia.",
+      "Domyślne wyszukiwanie obejmuje aktywne apteki ogólnodostępne i punkty apteczne. Pozostałe statusy i rodzaje placówek, w tym szpitalne, wymagają jawnego wyboru."
+    ],
+    "usage": "Podaj miejscowość oraz, jeśli ją znasz, ulicę lub nazwę. Agent powinien podać datę eksportu i odróżnić zgłoszone godziny od potwierdzenia otwarcia w tej chwili.",
+    "capabilities": [
+      "Wyszukiwanie po miejscowości, ulicy i nazwie",
+      "Adresy, telefony, status rejestru i dane zezwolenia",
+      "Zgłoszone godziny oraz odczyt konkretnego identyfikatora"
+    ],
+    "prompts": [
+      "Znajdź apteki przy Grunwaldzkiej w Gdańsku.",
+      "Podaj telefon i adres apteki o tej nazwie w Łodzi.",
+      "Sprawdź status wpisu apteki o podanym identyfikatorze."
+    ],
+    "limits": [
+      "Status i zgłoszone godziny nie potwierdzają otwarcia teraz, dyżuru ani dostępności leków.",
+      "Każde wywołanie online pobiera pełny eksport, około 17,6 MB; brak automatycznego cache. Do powtarzanych analiz można wskazać lokalny CSV.",
+      "Dane pliku lokalnego nie są uwierzytelniane. Puste pola pozostają brakującymi danymi."
+    ],
+    "related": [
+      "leki",
+      "nfz",
+      "adresy"
+    ]
   }
 }
